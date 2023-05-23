@@ -4,6 +4,11 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -13,9 +18,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class CafeMenu implements ActionListener
+
+
+public class CafeMenu implements ActionListener,WindowListener
 {
-	JFrame frame;
+	JFrame frame,frame2;
 	JLabel user,pass;
 	JTextField tuser;
 	JPasswordField tpass;
@@ -45,9 +52,12 @@ public class CafeMenu implements ActionListener
 		frame.add(pass);
 		frame.add(tpass);
 		frame.add(log);
+		
 		frame.setSize(500, 300);
 		frame.setLayout(null);
 		frame.setVisible(true);
+		
+		
 		
 	}
 	public static void main(String[] args) 
@@ -64,7 +74,6 @@ public class CafeMenu implements ActionListener
 		String u="tops";
 		String p="1234";
 		
-		JFrame frame2;
 		JLabel menu;
 		JCheckBox itm1,itm2,itm3,itm4,itm5;
 		JButton ord;
@@ -148,7 +157,8 @@ public class CafeMenu implements ActionListener
 			frame2.add(itm4);
 			frame2.add(itm5);
 			frame2.add(ord);
-			
+			frame2.addWindowListener((WindowListener) this);
+			frame2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			
 		}
 		else
@@ -156,6 +166,58 @@ public class CafeMenu implements ActionListener
 			JOptionPane.showMessageDialog(frame, "Invaild Username and Password");
 		
 		}
+		
+	}
+	
+	@Override
+	public void windowClosing(WindowEvent e) 
+	{
+		// TODO Auto-generated method stub
+
+		int ans=JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?");
+		
+		if(ans == JOptionPane.YES_OPTION)
+		{
+			frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		if(ans == JOptionPane.NO_OPTION)
+		{
+			
+			
+		}
+		if(ans == JOptionPane.CLOSED_OPTION)
+		{
+			
+		}
+	}
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
 		
 	}		
 }
